@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/allFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AllFragment"
-    android:id="@+id/allFragment">
+    android:orientation="vertical"
+    tools:context=".AllFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <!-- Text view de prueba
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/texto_prueba_all" />
+        -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

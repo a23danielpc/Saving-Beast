@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/all_item_view"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="#EFEFEF"
+    android:layout_height="200dp"
+    android:background="#FFFFFF"
     android:orientation="horizontal"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:layout_margin="5dp">
 
     <!-- Imagen a la izquierda -->
     <ImageView
         android:id="@+id/imagen_All"
-        android:layout_width="100dp"
-        android:layout_height="match_parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/imagen_Home"
         android:scaleType="centerCrop"
@@ -29,11 +32,29 @@
             android:id="@+id/titulo_All"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/cantidad_All"
+            android:id="@+id/cantidadActual_All"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/cantidadRestante_All"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/cantidadFinal_All"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/diasRestantes_All"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp" />
@@ -42,7 +63,7 @@
             android:id="@+id/tiempo_All"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <ProgressBar

@@ -22,14 +22,17 @@ class AhorroAdapter(
     // ViewHolder que mantiene las referencias de las vistas para cada elemento
     class AhorroViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombre: TextView = itemView.findViewById(R.id.titulo_All)
-        val cantidadActual: TextView = itemView.findViewById(R.id.tvCantidadActual)
-        val restante: TextView = itemView.findViewById(R.id.tvRestante)
-        val imagen: ImageView = itemView.findViewById(R.id.ivImagenAhorro)
+        val cantidadActual: TextView = itemView.findViewById(R.id.cantidadActual_All)
+        val cantidadRestante: TextView = itemView.findViewById(R.id.cantidadRestante_All)
+        val cantidadFinal: TextView = itemView.findViewById(R.id.cantidadFinal_All)
+        val fecha: TextView = itemView.findViewById(R.id.tiempo_All)
+        val imagen: ImageView = itemView.findViewById(R.id.imagen_All)
+        val diasRestantes: TextView = itemView.findViewById(R.id.diasRestantes_All)
     }
 
     // Infla el diseño para cada elemento de la lista
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AhorroViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_ahorro, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.all_item_view, parent, false)
         return AhorroViewHolder(view)
     }
 
@@ -38,14 +41,31 @@ class AhorroAdapter(
         val ahorro = listaAhorros[position]
 
         // Formatear cantidades a dos decimales
-        val formatter = DecimalFormat("#,###.00")
+        val formatter = DecimalFormat("0.00")
 
         holder.nombre.text = ahorro.getNombre()
-        holder.cantidadActual.text = "Actual: ${formatter.format(ahorro.getCantidadActual())}"
-        holder.restante.text = "Restante: ${formatter.format(ahorro.getRestante())}"
+
+        val cantidadActual =
+            context.getString(R.string.actualAll) + " " + formatter.format(ahorro.getCantidadActual())+"€"
+
+
+        holder.cantidadActual.text = cantidadActual
+
+        val cantidadRestante =
+            context.getString(R.string.restanteAll) + " " + formatter.format(ahorro.getRestante())+"€"
+        holder.cantidadRestante.text = cantidadRestante
+
+        val cantidadTotal =
+            context.getString(R.string.finalAll) + " " + formatter.format(ahorro.getCantidad())+"€"
+        holder.cantidadFinal.text = cantidadTotal
+
+        holder.fecha.text = ahorro.getFecha().toString()
+
+        val diasRestantes= context.getString(R.string.diasRestantesAll) + " " + ahorro.getDiasRestantes().toString()
+        holder.diasRestantes.text = diasRestantes
 
         // Carga la imagen (por ejemplo, desde un archivo local)
-        holder.imagen.setImageURI(ahorro.getImagen().toURI())
+        holder.imagen.setImageResource(ahorro.getImagen())
 
         // Maneja el clic en el elemento
         holder.itemView.setOnClickListener {

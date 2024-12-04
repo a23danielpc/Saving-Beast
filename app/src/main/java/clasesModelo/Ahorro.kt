@@ -1,6 +1,6 @@
 package clasesModelo
 
-import java.io.File
+import android.graphics.drawable.Drawable
 import java.time.temporal.ChronoUnit
 
 //Clase ahorro con atributos nombre, cantidad, cantidadActual, fecha, ultimoAhorro, imagen, periodo
@@ -10,7 +10,7 @@ class Ahorro(
     private var cantidadActual: Double,
     private var fecha: Fecha,
     private var ultimoAhorro: Fecha,
-    private var imagen: File,
+    private var imagen: Int,
     private var periodo: Periodo
 ) {
     //Getters y setters
@@ -41,7 +41,7 @@ class Ahorro(
     }
 
     //Funcion que retorna la imagen del ahorro
-    fun getImagen(): File {
+    fun getImagen(): Int {
         return imagen
     }
 
@@ -76,7 +76,7 @@ class Ahorro(
     }
 
     //Funcion que modifica la imagen del ahorro
-    fun setImagen(imagen: File) {
+    fun setImagen(imagen: Int) {
         this.imagen = imagen
     }
 
@@ -96,7 +96,7 @@ class Ahorro(
     }
 
     //Funcion que retorna los dias restantes para llegar a la meta
-    private fun getDiasRestantes(): Long {
+    fun getDiasRestantes(): Long {
         return Math.abs(ChronoUnit.DAYS.between(ultimoAhorro.toLocalDate(), fecha.toLocalDate()))
     }
 }
