@@ -1,5 +1,6 @@
 package app.savingbeasts
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -42,7 +43,7 @@ class AllFragment : Fragment() {
             R.drawable.coche,
             Periodo("Diario", 1)
         )
-        val ahorro3=Ahorro(
+        val ahorro3 = Ahorro(
             "Isaac",
             120.0,
             0.0,
@@ -51,7 +52,7 @@ class AllFragment : Fragment() {
             R.drawable.isaac,
             Periodo("Diario", 1)
         )
-        val ahorro4=Ahorro(
+        val ahorro4 = Ahorro(
             "La PC",
             1000.0,
             23.45,
@@ -61,17 +62,41 @@ class AllFragment : Fragment() {
             Periodo("Semanal", 7)
         )
         // Inicializar RecyclerView
-        val items = listOf(ahorro1,ahorro2,ahorro3,ahorro4)
+        val items = listOf(ahorro1, ahorro2, ahorro3, ahorro4)
 
         val recyclerView = binding.recyclerViewAll
         recyclerView.layoutManager =
             LinearLayoutManager(this.context) // Disposición en lista vertical
-        recyclerView.adapter = AhorroAdapter(this.requireContext(), items) {
-            // Manejar clic en el elemento
+        recyclerView.adapter = AhorroAdapter(this.requireContext(), items) { items, position ->
+            //Cosa al hacer click
+            showOptionsDialog(items, position) // Llamamos a la función para mostrar el diálogo
         }
 
 
         return view
     }
 
+    private fun showOptionsDialog(items: List<Ahorro>, position: Int) {
+        val options = arrayOf(
+            this.requireContext().getString(R.string.editar),
+            this.requireContext().getString(R.string.borrar)
+        )
+        val title = this.requireContext()
+            .getString(R.string.itemElegido) + " " + items[position].getNombre()
+        AlertDialog.Builder(this.context).setTitle(title).setItems(options) { _, which ->
+            when (which) {
+                0 -> editItem(items, position) // Llamamos a la función de editar
+                1 -> deleteItem(items, position)    // Llamamos a la función de borrar
+            }
+        }.show()
+    }
+
+    private fun editItem(items: List<Ahorro>, position: Int) {
+        // Código para editar un elemento
+    }
+
+    private fun deleteItem(items: List<Ahorro>, position: Int) {
+        // Código para borrar un elemento
+        items.drop(position)
+    }
 }

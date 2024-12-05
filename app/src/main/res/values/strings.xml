@@ -16,4 +16,7 @@
     <string name="restanteAll">Restante: </string>
     <string name="finalAll">Final: </string>
     <string name="diasRestantesAll">"Días restantes: "</string>
+    <string name="itemElegido">Elige una opcion para el item:</string>
+    <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
 </resources>
