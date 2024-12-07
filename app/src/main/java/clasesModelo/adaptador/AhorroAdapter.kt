@@ -20,7 +20,7 @@ import java.text.DecimalFormat
 // Adaptador de RecyclerView para la clase Ahorro
 class AhorroAdapter(
     private val context: Context,
-    private val listaAhorros: List<Ahorro>,
+    private var listaAhorros: MutableList<Ahorro>,
     private val onItemClick: (List<Ahorro>,Int) -> Unit // Callback para manejar clics en los elementos
 ) : RecyclerView.Adapter<AhorroAdapter.AhorroViewHolder>() {
 
@@ -73,7 +73,7 @@ class AhorroAdapter(
         holder.diasRestantes.text = diasRestantes
 
         // Carga la imagen (por ejemplo, desde un archivo local)
-        holder.imagen.setImageResource(ahorro.getImagen())
+        holder.imagen.setImageURI(android.net.Uri.parse(ahorro.getImagen().toString()))
 
         //Grafico de pastel
         val pieEntries = listOf(
@@ -109,4 +109,12 @@ class AhorroAdapter(
 
     // Devuelve el tamaño de la lista
     override fun getItemCount(): Int = listaAhorros.size
+    fun updateAhorros(ahorros: MutableList<Ahorro>?) {
+
+        if (ahorros != null) {
+            this.listaAhorros = ahorros.toMutableList()
+        } // Reemplaza la lista antigua con la nueva
+        notifyDataSetChanged() // Notifica al adaptador que la lista ha cambiado
+
+    }
 }

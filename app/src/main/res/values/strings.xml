@@ -19,4 +19,13 @@
     <string name="itemElegido">Elige una opcion para el item:</string>
     <string name="editar">Editar</string>
     <string name="borrar">Borrar</string>
+    <string name="editarNombre">Nombre:</string>
+    <string name="editarCantidadFinal">Cantidad Final:</string>
+    <string name="editarCantidadActual">"Cantidad Actual: "</string>
+    <string name="editarFecha">Fecha:</string>
+    <string name="editarFoto">Seleccioanr Foto</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="editar_ahorro">Editar Ahorro</string>
+    <string name="guardar">Guardar</string>
+    <string name="editarPeriodo">Periodo</string>
 </resources>

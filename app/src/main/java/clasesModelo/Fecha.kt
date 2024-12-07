@@ -12,7 +12,12 @@ class Fecha {
         this.mes = mes
         this.anio = anio
     }
-
+constructor(fecha:String){
+    val fechaArray = fecha.split("/")
+    this.dia = fechaArray[0].toInt()
+    this.mes = fechaArray[1].toInt()
+    this.anio = fechaArray[2].toInt()
+}
     constructor(fecha: LocalDate) {
 
         this.dia = fecha.dayOfMonth
