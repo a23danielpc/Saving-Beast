@@ -21,7 +21,7 @@ import java.text.DecimalFormat
 class AhorroAdapterAll(
     private val context: Context,
     private var listaAhorros: MutableList<Ahorro>,
-    private val onItemClick: (List<Ahorro>,Int) -> Unit // Callback para manejar clics en los elementos
+    private val onItemClick: (List<Ahorro>, Int) -> Unit // Callback para manejar clics en los elementos
 ) : RecyclerView.Adapter<AhorroAdapterAll.AhorroViewHolder>() {
 
     // ViewHolder que mantiene las referencias de las vistas para cada elemento
@@ -52,17 +52,17 @@ class AhorroAdapterAll(
         holder.nombre.text = ahorro.getNombre()
 
         val cantidadActual =
-            context.getString(R.string.actualAll) + " " + formatter.format(ahorro.getCantidadActual()) + "€"
+            context.getString(R.string.actualAll) + " " + formatter.format(ahorro.getCantidadActual()) + this.context.getString(R.string.euro)
 
 
         holder.cantidadActual.text = cantidadActual
 
         val cantidadRestante =
-            context.getString(R.string.restanteAll) + " " + formatter.format(ahorro.getRestante()) + "€"
+            context.getString(R.string.restanteAll) + " " + formatter.format(ahorro.getRestante()) + this.context.getString(R.string.euro)
         holder.cantidadRestante.text = cantidadRestante
 
         val cantidadTotal =
-            context.getString(R.string.finalAll) + " " + formatter.format(ahorro.getCantidad()) + "€"
+            context.getString(R.string.finalAll) + " " + formatter.format(ahorro.getCantidad()) + this.context.getString(R.string.euro)
         holder.cantidadFinal.text = cantidadTotal
 
         holder.fecha.text = ahorro.getFecha().toString()
@@ -103,7 +103,8 @@ class AhorroAdapterAll(
 
         // Maneja el clic en el elemento
         holder.itemView.setOnClickListener {
-            onItemClick(listaAhorros,position)
+            onItemClick(listaAhorros, position)
+
         }
     }
 

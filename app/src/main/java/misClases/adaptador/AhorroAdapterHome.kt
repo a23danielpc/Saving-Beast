@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import app.savingbeasts.R
 import misClases.Ahorro
+import misClases.Fecha
 import java.text.DecimalFormat
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
@@ -38,47 +40,50 @@ class AhorroAdapterHome(
 
     // Vincula los datos del objeto Ahorro a las vistas
     override fun onBindViewHolder(holder: AhorroViewHolder, position: Int) {
-        if (listaAhorros[position].getRestante() > 0 && Math.abs(
-                ChronoUnit.DAYS.between(
-                    listaAhorros[position].getUltimoAhorro().toLocalDate(), LocalDate.now()
-                )
-            ) >= listaAhorros[position].getPeriodo().getDias() as Long
-        ) {
-            val ahorro = listaAhorros[position]
 
-            // Formatear cantidades a dos decimales
-            val formatter = DecimalFormat("0.00")
+        val ahorro = listaAhorros[position]
 
-            holder.nombre.text = ahorro.getNombre()
-
-            val cantidadActual =
-                context.getString(R.string.actualAll) + " " + formatter.format(ahorro.getCantidadActual()) + "€"
-            holder.cantidadRestante.text = cantidadActual
-
-            val cantidadRestante =
-                context.getString(R.string.restanteAll) + " " + formatter.format(ahorro.getRestante()) + "€"
-            holder.cantidadRestante.text = cantidadRestante
-
-            val cantidadTotal =
-                context.getString(R.string.finalAll) + " " + formatter.format(ahorro.getCantidad()) + "€"
-            holder.cantidadFinal.text = cantidadTotal
-
-            holder.fecha.text = ahorro.getFecha().toString()
-
-            val diasRestantes =
-                context.getString(R.string.diasRestantesAll) + " " + ahorro.getDiasRestantes()
-                    .toString()
+        // Formatear cantidades a dos decimales
+        val formatter = DecimalFormat("0.00")
 
 
-            holder.boton.setOnClickListener {
-                ahorrarDia(listaAhorros, position)
-            }
+        holder.nombre.text = ahorro.getNombre()
 
-            // Carga la imagen (por ejemplo, desde un archivo local)
-            holder.imagen.setImageURI(android.net.Uri.parse(ahorro.getImagen().toString()))
+
+        val cantidadActual =
+            context.getString(R.string.actualAll) + " " + formatter.format(ahorro.getCantidadActual()) + this.context.getString(
+                R.string.euro
+            )
+        holder.cantidadRestante.text = cantidadActual
+
+        val cantidadRestante =
+            context.getString(R.string.restanteAll) + " " + formatter.format(ahorro.getRestante()) + this.context.getString(
+                R.string.euro
+            )
+        holder.cantidadRestante.text = cantidadRestante
+
+        val cantidadTotal =
+            context.getString(R.string.finalAll) + " " + formatter.format(ahorro.getCantidad()) + this.context.getString(
+                R.string.euro
+            )
+        holder.cantidadFinal.text = cantidadTotal
+
+        holder.fecha.text = ahorro.getFecha().toString()
+
+        val diasRestantes =
+            context.getString(R.string.diasRestantesAll) + " " + ahorro.getDiasRestantes()
+                .toString()
+
+
+        holder.boton.setOnClickListener {
+            ahorrarDia(listaAhorros, position)
+            Toast.makeText(context, this.context.getString(R.string.ahorroRealizado), Toast.LENGTH_SHORT).show()
         }
 
+        // Carga la imagen (por ejemplo, desde un archivo local)
+        holder.imagen.setImageURI(android.net.Uri.parse(ahorro.getImagen().toString()))
     }
+
 
     // Devuelve el tamaño de la lista
     override fun getItemCount(): Int = listaAhorros.size
@@ -94,6 +99,11 @@ class AhorroAdapterHome(
     fun ahorrarDia(listaAhorros: MutableList<Ahorro>, position: Int) {
         val ahorro = listaAhorros[position]
         listaAhorros[position].setCantidadActual(ahorro.getCantidadActual() + ahorro.getAhorroDiario())
+        listaAhorros[position].setUltimoAhorro(Fecha(LocalDate.now()))
+        if (listaAhorros[position].getRestante() <= 0) {
+            listaAhorros[position].setCantidad(listaAhorros[position].getCantidad())
+            listaAhorros[position].setCantidadActual(listaAhorros[position].getCantidad())
+        }
         notifyDataSetChanged()
     }
 }

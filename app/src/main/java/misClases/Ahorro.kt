@@ -1,5 +1,6 @@
 package misClases
 
+import android.net.Uri
 import java.net.URI
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
@@ -10,9 +11,9 @@ class Ahorro(
     private var cantidad: Double,
     private var cantidadActual: Double,
     private var fecha: Fecha,
-    private var ultimoAhorro: Fecha = Fecha(LocalDate.now()),
-    private var imagen: URI,
-    private var periodo: Periodo
+    private var ultimoAhorro: Fecha = Fecha(LocalDate.now().minusDays(1)),
+    private var imagen: Uri,
+    private var periodo: Int
 ) {
 
     //Getters y setters
@@ -43,12 +44,12 @@ class Ahorro(
     }
 
     //Funcion que retorna la imagen del ahorro
-    fun getImagen(): URI {
+    fun getImagen(): Uri {
         return imagen
     }
 
     //Funcion que retorna el periodo del ahorro
-    fun getPeriodo(): Periodo {
+    fun getPeriodo(): Int {
         return periodo
     }
 
@@ -78,12 +79,12 @@ class Ahorro(
     }
 
     //Funcion que modifica la imagen del ahorro
-    fun setImagen(imagen: URI) {
+    fun setImagen(imagen: Uri) {
         this.imagen = imagen
     }
 
     //Funcion que modifica el periodo del ahorro
-    fun setPeriodo(periodo: Periodo) {
+    fun setPeriodo(periodo: Int) {
         this.periodo = periodo
     }
 
@@ -108,8 +109,8 @@ class Ahorro(
         cantidadActual: Double = this.cantidadActual,
         fecha: Fecha = this.fecha,
         ultimoAhorro: Fecha = this.ultimoAhorro,
-        imagen: URI = this.imagen,
-        periodo: Periodo = this.periodo
+        imagen: Uri = this.imagen,
+        periodo: Int = this.periodo
     ): Ahorro {
         return Ahorro(nombre, cantidad, cantidadActual, fecha, ultimoAhorro, imagen, periodo)
     }

@@ -29,4 +29,11 @@ class AhorroViewModel : ViewModel() {
             _ahorros.value = it // Notificar a los observadores
         }
     }
+
+    fun addAhorro(nuevoAhorro: Ahorro) {
+        _ahorros.value?.let {
+            it.add(nuevoAhorro)
+            _ahorros.value = it // Notificar a los observadores
+        }
+    }
 }

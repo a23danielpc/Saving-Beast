@@ -32,4 +32,9 @@
     <string name="noHayAhorrosPendientes">No tienes ahorros pendientes</string>
     <string name="boton">Botón</string>
     <string name="barraFechas">/</string>
+    <string name="guardar_ahorro">Guardar nuevo ahorro</string>
+    <string name="euro">€</string>
+    <string name="ahorroRealizado">Ahorro realizado</string>
+    <string name="ahorroEditado">Ahorro editado con éxito</string>
+    <string name="ahorroEliminado">Ahorro eliminado con éxito</string>
 </resources>

@@ -12,6 +12,8 @@ import app.savingbeasts.databinding.FragmentHomeBinding
 import misClases.Ahorro
 import misClases.adaptador.AhorroAdapterHome
 import misClases.viewModel.AhorroViewModel
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 
 class HomeFragment : Fragment() {
@@ -31,16 +33,30 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
 
         this.items = ahorroViewModel.ahorros.value ?: mutableListOf()
-
+        var itemsFiltrados = mutableListOf<Ahorro>()
+        for (i in items) {
+            if (i.getRestante() > 0.0) {
+                if (Math.abs(
+                        ChronoUnit.DAYS.between(
+                            i.getUltimoAhorro().toLocalDate(), LocalDate.now()
+                        )
+                    ) >= i.getPeriodo()
+                ) {
+                    itemsFiltrados.add(i)
+                }
+            }
+        }
         // Inicializar RecyclerView
         val recyclerView = binding.recyclerViewHome
 
         recyclerView.layoutManager =
             LinearLayoutManager(this.context) // Disposición en lista vertical
-        if (items.size == 0) {
+        if (itemsFiltrados.size == 0) {
+
             binding.textViewHome.text = getString(R.string.noHayAhorrosPendientes)
         } else {
-            adapter = AhorroAdapterHome(this.requireContext(), items)
+            binding.textViewHome.height = 0
+            adapter = AhorroAdapterHome(this.requireContext(), itemsFiltrados)
 
             recyclerView.adapter = this.adapter
 
@@ -49,16 +65,15 @@ class HomeFragment : Fragment() {
                 adapter.updateAhorros(ahorros)
             })
         }
-
-
-
         return view
     }
+
     override fun onResume() {
         super.onResume()
         // Cambiar el título en la Toolbar
         activity?.title = getString(R.string.home)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
