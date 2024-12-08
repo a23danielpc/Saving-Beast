@@ -1,7 +1,6 @@
-package clasesModelo.adaptador
+package misClases.adaptador
 
 
-import clasesModelo.Ahorro
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
@@ -15,14 +14,15 @@ import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import misClases.Ahorro
 import java.text.DecimalFormat
 
 // Adaptador de RecyclerView para la clase Ahorro
-class AhorroAdapter(
+class AhorroAdapterAll(
     private val context: Context,
     private var listaAhorros: MutableList<Ahorro>,
     private val onItemClick: (List<Ahorro>,Int) -> Unit // Callback para manejar clics en los elementos
-) : RecyclerView.Adapter<AhorroAdapter.AhorroViewHolder>() {
+) : RecyclerView.Adapter<AhorroAdapterAll.AhorroViewHolder>() {
 
     // ViewHolder que mantiene las referencias de las vistas para cada elemento
     class AhorroViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -9,18 +9,17 @@
     app:defaultNavHost="true"
     tools:context=".HomeFragment">
 
-
+    <TextView
+        android:id="@+id/textViewHome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="30sp"
+        android:gravity="center_horizontal"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/texto_prueba_home" />
 
 </LinearLayout>

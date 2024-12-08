@@ -8,12 +8,14 @@
     tools:context=".AllFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <!-- Text view de prueba
+
     <TextView
+        android:id="@+id/textViewAll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/texto_prueba_all" />
-        -->
+        android:textSize="30sp"
+        android:gravity="center_horizontal"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAll"
         android:layout_width="match_parent"

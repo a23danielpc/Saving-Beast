@@ -28,4 +28,8 @@
     <string name="editar_ahorro">Editar Ahorro</string>
     <string name="guardar">Guardar</string>
     <string name="editarPeriodo">Periodo</string>
+    <string name="noHayAhorros">No tienes ningún ahorro</string>
+    <string name="noHayAhorrosPendientes">No tienes ahorros pendientes</string>
+    <string name="boton">Botón</string>
+    <string name="barraFechas">/</string>
 </resources>

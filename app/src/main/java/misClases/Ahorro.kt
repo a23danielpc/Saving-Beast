@@ -1,6 +1,5 @@
-package clasesModelo
+package misClases
 
-import android.graphics.drawable.Drawable
 import java.net.URI
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
@@ -113,5 +112,9 @@ class Ahorro(
         periodo: Periodo = this.periodo
     ): Ahorro {
         return Ahorro(nombre, cantidad, cantidadActual, fecha, ultimoAhorro, imagen, periodo)
+    }
+
+    fun getAhorroDiario(): Double {
+        return cantidad / getDiasRestantes()
     }
 }

@@ -1,4 +1,4 @@
-package clasesModelo
+package misClases
 
 //Data class Periodo con atributos nombre:String y dias:Int y un constructor secundario que recibe un nombre y establece un entero
 data class Periodo(var nombre: String, var dias: Int) {

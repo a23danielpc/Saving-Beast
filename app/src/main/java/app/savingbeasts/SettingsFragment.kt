@@ -1,12 +1,11 @@
 package app.savingbeasts
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import app.savingbeasts.databinding.FragmentSettingsBinding
-import app.savingbeasts.databinding.FragmentStatisticsBinding
 
 class SettingsFragment : Fragment() {
     var _binding: FragmentSettingsBinding? = null
@@ -19,7 +18,11 @@ class SettingsFragment : Fragment() {
         // Inflate the layout for this fragment
         return view
     }
-
+    override fun onResume() {
+        super.onResume()
+        // Cambiar el título en la Toolbar
+        activity?.title = getString(R.string.settings)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

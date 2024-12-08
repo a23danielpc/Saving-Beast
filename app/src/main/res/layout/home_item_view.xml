@@ -29,11 +29,14 @@
             android:id="@+id/titulo_Home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/cantidad_Restante_Home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp" />
         <TextView
             android:id="@+id/cantidad_Home"
             android:layout_width="wrap_content"

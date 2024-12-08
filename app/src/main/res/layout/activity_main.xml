@@ -8,19 +8,28 @@
     android:orientation="vertical"
     android:paddingTop="15dp">
 
-    <androidx.fragment.app.FragmentContainerView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="?attr/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/white"
+        app:titleTextAppearance="@style/ToolbarTitleStyle"/>
+
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:navGraph="@navigation/nav_graph"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"
         tools:ignore="InefficientWeight" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="0dp"
         app:menu="@menu/menu_main" />
 </LinearLayout>
