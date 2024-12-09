@@ -37,4 +37,19 @@
     <string name="ahorroRealizado">Ahorro realizado</string>
     <string name="ahorroEditado">Ahorro editado con éxito</string>
     <string name="ahorroEliminado">Ahorro eliminado con éxito</string>
+    <string name="error_nombre_vacio">Debes elegir un nombre para el ahorro</string>
+    <string name="error_cantidad_invalida">Debes elegir una cantidad para el ahorro</string>
+    <string name="error_fecha_invalida">Debes introducir una fecha válida</string>
+    <string name="error_periodo_invalido">El periodo debe ser de mínimo un día</string>
+    <string name="error_imagen_vacia">Debes seleccionar una imagen</string>
+    <string name="error_cantidad_actual_invalida">Debes elejir una cantidad mayor o igual a 0 para el ahorro</string>
+    <string name="dinero_restante">Cantidad restante total:</string>
+    <string name="dinero_ahorrado">Cantidad total ahorrada:</string>
+    <string name="dinero_terminado">Cantidad total de ahorros:</string>
+    <string name="finished">Terminada</string>
+    <string name="saved">Ahorrada</string>
+    <string name="remaining">Restante</string>
+    <string name="grafico">Estadísitcas generales</string>
+    <string name="noTerminada">Sin terminada</string>
+    <string name="noData">No hay suficientes datos</string>
 </resources>

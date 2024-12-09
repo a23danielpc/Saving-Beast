@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -90,7 +91,6 @@ class MainActivity : AppCompatActivity() {
         val editPeriodo = dialogView.findViewById<EditText>(R.id.editPeriodo)
         val btnSelectImage = dialogView.findViewById<Button>(R.id.editarFoto)
 
-
         // Manejar el clic en el botón de seleccionar imagen
         btnSelectImage.setOnClickListener {
             // Lanzar el selector de imágenes
@@ -99,34 +99,64 @@ class MainActivity : AppCompatActivity() {
 
         AlertDialog.Builder(this).setTitle(getString(R.string.guardar_ahorro)).setView(dialogView)
             .setPositiveButton(getString(R.string.guardar)) { _, _ ->
-                // Guardar los cambios
+                // Validar los campos
+                val nombre = editNombre.text.toString().trim()
+                val cantidadActualText = editActual.text.toString().trim()
+                val fechaDiaText = editFechaDia.text.toString().trim()
+                val fechaMesText = editFechaMes.text.toString().trim()
+                val fechaAnoText = editFechaAno.text.toString().trim()
+                val periodoText = editPeriodo.text.toString().trim()
+
+                // Validación de nombre
+                if (nombre.isEmpty()) {
+                    Toast.makeText(this, getString(R.string.error_nombre_vacio), Toast.LENGTH_SHORT)
+                        .show()
+                    return@setPositiveButton
+                }
+
+                // Validación de cantidad actual
+                val cantidadActual = cantidadActualText.toDoubleOrNull()
+                if (cantidadActual == null || cantidadActual <= 0) {
+                    Toast.makeText(this, getString(R.string.error_cantidad_invalida), Toast.LENGTH_SHORT)
+                        .show()
+                    return@setPositiveButton
+                }
+
+                // Validación de fecha
+                val dia = fechaDiaText.toIntOrNull()
+                val mes = fechaMesText.toIntOrNull()
+                val ano = fechaAnoText.toIntOrNull()
+                if (dia == null || mes == null || ano == null || dia !in 1..31 || mes !in 1..12) {
+                    Toast.makeText(this, getString(R.string.error_fecha_invalida), Toast.LENGTH_SHORT)
+                        .show()
+                    return@setPositiveButton
+                }
+
+                // Validación de periodo
+                val periodo = periodoText.toIntOrNull()
+                if (periodo == null || periodo <= 0) {
+                    Toast.makeText(this, getString(R.string.error_periodo_invalido), Toast.LENGTH_SHORT)
+                        .show()
+                    return@setPositiveButton
+                }
+                //Validacion de la imagen
+                if (selectedImageUri == null) {
+                    Toast.makeText(this, getString(R.string.error_imagen_vacia), Toast.LENGTH_SHORT)
+                        .show()
+                    return@setPositiveButton
+                }
+
+                // Si todo es válido, guardar los datos
                 val nuevoAhorro = Ahorro(
-                    nombre = editNombre.text.toString(),
-                    cantidadActual = 0.00,
-                    fecha = Fecha(
-                        editFechaDia.text.toString().toInt(),
-                        editFechaMes.text.toString().toInt(),
-                        editFechaAno.text.toString().toInt()
-                    ),
+                    nombre = nombre,
+                    cantidad = cantidadActual,
+                    fecha = Fecha(dia!!, mes!!, ano!!),
                     ultimoAhorro = Fecha(LocalDate.now().minusDays(1)),
                     imagen = selectedImageUri!!, // Actualizar con la URI seleccionada
-                    cantidad = editActual.text.toString().toDouble(),
-                    periodo = editPeriodo.text.toString().toInt()
+                    cantidadActual = 0.0,
+                    periodo = periodo
                 )
                 ahorroViewModel.addAhorro(nuevoAhorro)
             }.setNegativeButton(getString(R.string.cancelar), null).show()
-    }
-    fun getCurrentFragment(): Fragment? {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.host_fragment) as NavHostFragment
-        return navHostFragment.childFragmentManager.fragments.firstOrNull()
-    }
-    fun reloadCurrentFragment() {
-        val navController = (supportFragmentManager.findFragmentById(R.id.host_fragment) as NavHostFragment).navController
-        val currentDestinationId = navController.currentDestination?.id
-
-        if (currentDestinationId != null) {
-            navController.popBackStack(currentDestinationId, true) // Eliminar el fragmento actual
-            navController.navigate(currentDestinationId)          // Navegar al mismo fragmento
-        }
     }
 }
