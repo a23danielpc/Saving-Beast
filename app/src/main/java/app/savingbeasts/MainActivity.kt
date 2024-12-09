@@ -17,6 +17,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -158,5 +159,18 @@ class MainActivity : AppCompatActivity() {
                 )
                 ahorroViewModel.addAhorro(nuevoAhorro)
             }.setNegativeButton(getString(R.string.cancelar), null).show()
+    }
+    fun reloadFragments() {
+        val fragmentManager: FragmentManager = supportFragmentManager
+
+        val fragmentHome = HomeFragment()
+        val fragmentAll = AllFragment()
+        val fragmentStatistics = StatisticsFragment()
+
+        fragmentManager.beginTransaction()
+            .replace(R.id.homeFragment, fragmentHome)
+            .replace(R.id.allFragment, fragmentAll)
+            .replace(R.id.statisticsFragment, fragmentStatistics)
+            .commit()
     }
 }

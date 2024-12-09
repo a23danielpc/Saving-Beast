@@ -11,7 +11,7 @@ class Ahorro(
     private var cantidad: Double,
     private var cantidadActual: Double,
     private var fecha: Fecha,
-    private var ultimoAhorro: Fecha = Fecha(LocalDate.now().minusDays(1)),
+    private var ultimoAhorro: Fecha = Fecha(LocalDate.of(2021, 1, 1)),
     private var imagen: Uri,
     private var periodo: Int
 ) {

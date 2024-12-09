@@ -12,7 +12,9 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.replace
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.savingbeasts.databinding.FragmentAllBinding
@@ -86,12 +88,10 @@ class AllFragment : Fragment() {
             when (which) {
                 0 -> {
                     editItem(this.items, position)
-
                 } // Llamamos a la función de editar
                 1 -> {
                     // Llamamos a la función de borrar
                     deleteItem(position)
-
                 }
             }
         }.show()
@@ -151,7 +151,9 @@ class AllFragment : Fragment() {
                 val fechaMesText = editFechaMes.text.toString().trim()
                 val fechaAnoText = editFechaAno.text.toString().trim()
                 val periodoText = editPeriodo.text.toString().trim()
-
+                if (ahorro != null) {
+                    selectedImageUri = ahorro.getImagen()
+                }
                 // Validación de nombre
                 if (nombre.isEmpty()) {
                     Toast.makeText(
@@ -164,7 +166,9 @@ class AllFragment : Fragment() {
                 val cantidadFinal = cantidadFinalText.toDoubleOrNull()
                 if (cantidadFinal == null || cantidadFinal <= 0) {
                     Toast.makeText(
-                        this.context, getString(R.string.error_cantidad_invalida), Toast.LENGTH_SHORT
+                        this.context,
+                        getString(R.string.error_cantidad_invalida),
+                        Toast.LENGTH_SHORT
                     ).show()
                     return@setPositiveButton
                 }
@@ -173,7 +177,9 @@ class AllFragment : Fragment() {
                 val cantidadActual = cantidadActualText.toDoubleOrNull()
                 if (cantidadActual == null || cantidadActual < 0) {
                     Toast.makeText(
-                        this.context, getString(R.string.error_cantidad_actual_invalida), Toast.LENGTH_SHORT
+                        this.context,
+                        getString(R.string.error_cantidad_actual_invalida),
+                        Toast.LENGTH_SHORT
                     ).show()
                     return@setPositiveButton
                 }
@@ -230,4 +236,5 @@ class AllFragment : Fragment() {
         super.onDestroyView()
         _binding = null // Evitar memory leaks
     }
+
 }
