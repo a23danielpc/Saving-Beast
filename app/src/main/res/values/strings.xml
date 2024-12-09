@@ -52,4 +52,6 @@
     <string name="grafico">Estadísitcas generales</string>
     <string name="noTerminada">Sin terminada</string>
     <string name="noData">No hay suficientes datos</string>
+    <string name="modena">Moneda:</string>
+    <string name="fecha">Formato fecha:</string>
 </resources>

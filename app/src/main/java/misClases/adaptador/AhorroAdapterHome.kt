@@ -104,6 +104,7 @@ class AhorroAdapterHome(
             listaAhorros[position].setCantidad(listaAhorros[position].getCantidad())
             listaAhorros[position].setCantidadActual(listaAhorros[position].getCantidad())
         }
+
         notifyDataSetChanged()
     }
 }

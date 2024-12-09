@@ -52,4 +52,6 @@
     <string name="grafico">General Statistics</string>
     <string name="noTerminada">Not finished</string>
     <string name="noData">Not enough data</string>
+    <string name="modena">Currency:</string>
+    <string name="fecha">Date format:</string>
 </resources>

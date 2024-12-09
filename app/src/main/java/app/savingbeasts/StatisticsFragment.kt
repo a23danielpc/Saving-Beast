@@ -51,8 +51,11 @@ class StatisticsFragment : Fragment() {
 
         val pieEntries = mutableListOf<PieEntry>()
 
-        if (cantidadTotalTerminada == 0.0 || cantidadTotalAhorrada == 0.0 || cantidadRestanteTotal == 0.0) {
+        if (cantidadTotalAhorrada == 0.0 || cantidadRestanteTotal == 0.0) {
             pieEntries.add(PieEntry(1f, getString(R.string.noData)))
+        } else if (cantidadTotalTerminada == 0.0) {
+            pieEntries.add(PieEntry(cantidadTotalAhorrada.toFloat(), getString(R.string.finished)))
+            pieEntries.add(PieEntry(cantidadRestanteTotal.toFloat(), getString(R.string.remaining)))
         } else {
             pieEntries.add(PieEntry(cantidadTotalTerminada.toFloat(), getString(R.string.finished)))
             pieEntries.add(PieEntry(cantidadTotalAhorrada.toFloat(), getString(R.string.saved)))
